@@ -51,7 +51,6 @@ select choice: '''))
         elif(choice==6):
             index = int(input("Enter the index of the task which is completed : "))
             stat[index-1]="Done"
-            # status = input("Enter your status")
             display2(to_do_list,name,index,stat)
 
         else:
