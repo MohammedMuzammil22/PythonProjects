@@ -1,28 +1,21 @@
 import random
 
+availableChoice = ['rock','paper','sissor']
+winningScore = 5
+
 def userInput():
-    userIP = int(input("""
-SELECT
-1.Rock
-2.Paper
-3.Sissor
-Enter your choice: """))
-    while(userIP<1 or userIP>3):
+    while(True):
         userIP = int(input("""
 SELECT
 1.Rock
 2.Paper
 3.Sissor
 Enter your choice: """))
-    AvailableChoice = ['rock','paper','sissor']
-    userChoice = AvailableChoice[userIP-1]
-    return userChoice
+        if( 1<= userIP <= 3):
+            return availableChoice[userIP-1]
 
 def computerChoice():
-    AvailableChoice = ['rock','paper','sissor']
-    randomNumber = random.randint (0,2)
-    compChoice = AvailableChoice[randomNumber]
-    return compChoice
+    return random.choice(availableChoice)
 
 def RPS_conditions(userChoice,compChoice,userScore,computerScore):
     if((userChoice=='rock' and compChoice=='sissor') or (userChoice=='paper' and compChoice=='rock') or (userChoice=='sissor' and compChoice=='paper')):
@@ -39,18 +32,17 @@ def displayScore(userScore,computerScore,name,userChoice,compChoice):
     print(f"Computer's score is :{computerScore}")
     print("___________ ______________ ___________")
 
-def win(userScore,computerScore,name):
-    if(userScore==5):
+def checkWin(userScore,computerScore,name):
+    if(userScore==winningScore):
         print(f"{name} wins...")
         return 1
     
-    if(computerScore==5):
+    elif(computerScore==winningScore):
         print(f"Computer wins...")
         return 1
 
 def game():
-    play=""
-    while(play.lower() != 'no'):
+    while(True):
         userScore=0
         computerScore=0
         print("""__________Welcome to Rock_Paper_Sisors__________""")
@@ -60,10 +52,12 @@ def game():
             compChoice = computerChoice()
             userScore,computerScore = RPS_conditions(userChoice,compChoice,userScore,computerScore)
             displayScore(userScore,computerScore,name,userChoice,compChoice)
-            win1 = win(userScore,computerScore,name)
-            if(win1==1):
+            win = checkWin(userScore,computerScore,name)
+            if(win == 1):
                 break
         play = input("Do you want to play again (yes/no): ")
+        if(play.lower() == 'no'):
+            break
 
 game()
 
