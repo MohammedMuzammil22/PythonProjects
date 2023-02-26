@@ -45,8 +45,7 @@ while(playAgain.lower()=='y'):
             b = random.randint(0,len(tempData)-1)
             if(a!=b):
                 break
-        # for i in range(len(tempData)):
-        #     print(tempData[i]['name'])
+
         print(f"Compare A: {tempData[a]['name']},{tempData[a]['profession']},from {tempData[a]['location']} ")
         print("..........vs.........")
         print(f"Against B: {tempData[b]['name']},{tempData[b]['profession']},from {tempData[b]['location']} ")
